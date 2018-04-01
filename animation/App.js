@@ -13,7 +13,7 @@ export default class animations extends Component {
   }
   startAnimation = () => {
     Animated.timing(this.state.animation, {
-      toValue: 2,
+      toValue: 300,
       duration: 1500
     }).start(() => {
       this.state.animation.setValue(1)
@@ -22,7 +22,11 @@ export default class animations extends Component {
 
   render() {
     const animatedStyles = {
-      transform: [{ scale: this.state.animation }]
+      transform: [
+        {
+          scaleY: this.state.animation
+        }
+      ]
     }
     return (
       <View style={styles.container}>
