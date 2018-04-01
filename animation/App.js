@@ -10,31 +10,25 @@ import {
 
 export default class animations extends Component {
   state = {
-    animation: new Animated.Value(150)
+    animation: new Animated.Value(100)
   }
-  startAnimation = () => {
+  componentDidMount() {
     Animated.timing(this.state.animation, {
-      toValue: 300,
-      duration: 1500
-    }).start(() => {
-      this.state.animation.setValue(150)
-    })
+      toValue: 200
+    }).start()
   }
 
   render() {
-    const animatedStyles = {
-      width: this.state.animation,
+    const boxStyle = {
       height: this.state.animation
     }
+
     return (
       <View style={styles.container}>
-        <TouchableWithoutFeedback onPress={this.startAnimation}>
-          <Animated.View style={[styles.box, animatedStyles]}>
-            <Text>
-              testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttest
-            </Text>
-          </Animated.View>
-        </TouchableWithoutFeedback>
+        <View>
+          <Animated.View style={[styles.box, boxStyle]} />
+          <View style={styles.box2} />
+        </View>
       </View>
     )
   }
@@ -47,8 +41,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   box: {
-    // width: 150,
-    // height: 150,
+    width: 100,
+    height: 100,
     backgroundColor: 'tomato'
+  },
+  box2: {
+    width: 100,
+    height: 100,
+    backgroundColor: 'blue'
   }
 })
