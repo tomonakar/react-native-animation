@@ -10,24 +10,33 @@ import {
 
 export default class animations extends Component {
   state = {
-    animation: new Animated.Value(100)
+    animation: new Animated.Value(1)
   }
   componentDidMount() {
     Animated.timing(this.state.animation, {
-      toValue: 200
+      toValue: 2,
+      duration: 250
     }).start()
   }
 
   render() {
+    const yInterpolate = this.state.animation.interpolate({
+      inputRange: [1, 2],
+      outputRange: [0, -25]
+    })
+
     const boxStyle = {
-      height: this.state.animation
+      transform: [
+        { scaleY: this.state.animation },
+        { translateY: yInterpolate }
+      ]
     }
 
     return (
       <View style={styles.container}>
         <View>
-          <Animated.View style={[styles.box, boxStyle]} />
           <View style={styles.box2} />
+          <Animated.View style={[styles.box, boxStyle]} />
         </View>
       </View>
     )
