@@ -29,7 +29,11 @@ export default class animations extends Component {
     return (
       <View style={styles.container}>
         <TouchableWithoutFeedback onPress={this.startAnimation}>
-          <Animated.View style={[styles.box, animatedStyles]} />
+          <Animated.View style={[styles.box, animatedStyles]}>
+            <Text>
+              testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttest
+            </Text>
+          </Animated.View>
         </TouchableWithoutFeedback>
       </View>
     )
