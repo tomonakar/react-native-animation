@@ -25,6 +25,9 @@ export default class animations extends Component {
       transform: [
         {
           scaleY: this.state.animation
+        },
+        {
+          scaleX: this.state.animation
         }
       ]
     }
