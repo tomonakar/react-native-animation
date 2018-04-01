@@ -4,6 +4,7 @@ import {
   StyleSheet,
   View,
   Animated,
+  Text,
   TouchableWithoutFeedback
 } from 'react-native'
 
@@ -13,7 +14,7 @@ export default class animations extends Component {
   }
   startAnimation = () => {
     Animated.timing(this.state.animation, {
-      toValue: 300,
+      toValue: -1,
       duration: 1500
     }).start(() => {
       this.state.animation.setValue(1)
@@ -25,16 +26,15 @@ export default class animations extends Component {
       transform: [
         {
           scaleY: this.state.animation
-        },
-        {
-          scaleX: this.state.animation
         }
       ]
     }
     return (
       <View style={styles.container}>
         <TouchableWithoutFeedback onPress={this.startAnimation}>
-          <Animated.View style={[styles.box, animatedStyles]} />
+          <Animated.View style={[styles.box, animatedStyles]}>
+            <Text>This side is top</Text>
+          </Animated.View>
         </TouchableWithoutFeedback>
       </View>
     )
