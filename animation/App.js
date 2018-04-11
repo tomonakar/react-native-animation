@@ -14,9 +14,15 @@ export default class animations extends Component {
   }
   componentDidMount() {
     Animated.timing(this.state.animation, {
-      toValue: 2,
-      duration: 250
-    }).start()
+     timingOpacity
+      toValue: 0,
+      duration: 140
+    }).start(() => {
+      Animated.timing(this.state.animation, {
+        toValue: 1,
+        duration: 500
+      }).start()
+    })
   }
 
   render() {
