@@ -4,6 +4,7 @@ import {
   StyleSheet,
   View,
   Animated,
+  Text,
   TouchableWithoutFeedback
 } from 'react-native'
 
@@ -11,8 +12,9 @@ export default class animations extends Component {
   state = {
     animation: new Animated.Value(1)
   }
-  startAnimation = () => {
+  componentDidMount() {
     Animated.timing(this.state.animation, {
+     timingOpacity
       toValue: 0,
       duration: 140
     }).start(() => {
@@ -24,14 +26,24 @@ export default class animations extends Component {
   }
 
   render() {
-    const animatedStyles = {
-      opacity: this.state.animation
+    const yInterpolate = this.state.animation.interpolate({
+      inputRange: [1, 2],
+      outputRange: [0, -25]
+    })
+
+    const boxStyle = {
+      transform: [
+        { scaleY: this.state.animation },
+        { translateY: yInterpolate }
+      ]
     }
+
     return (
       <View style={styles.container}>
-        <TouchableWithoutFeedback onPress={this.startAnimation}>
-          <Animated.View style={[styles.box, animatedStyles]} />
-        </TouchableWithoutFeedback>
+        <View>
+          <View style={styles.box2} />
+          <Animated.View style={[styles.box, boxStyle]} />
+        </View>
       </View>
     )
   }
@@ -44,8 +56,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   box: {
-    width: 150,
-    height: 150,
+    width: 100,
+    height: 100,
     backgroundColor: 'tomato'
+  },
+  box2: {
+    width: 100,
+    height: 100,
+    backgroundColor: 'blue'
   }
 })
